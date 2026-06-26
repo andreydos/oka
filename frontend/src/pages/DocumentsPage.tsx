@@ -103,8 +103,8 @@ export function DocumentsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold">Documents</h1>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 md:mb-6">
+        <h1 className="text-xl md:text-2xl font-semibold">Documents</h1>
         <label className="cursor-pointer rounded-lg bg-slate-800 px-4 py-2 text-sm text-white hover:bg-slate-700">
           {uploading ? "Uploading…" : "Upload files"}
           <input
@@ -120,7 +120,7 @@ export function DocumentsPage() {
       </div>
 
       <div
-        className="mb-6 rounded-xl border-2 border-dashed border-slate-300 p-8 text-center text-slate-500"
+        className="mb-4 md:mb-6 rounded-xl border-2 border-dashed border-slate-300 p-4 md:p-8 text-center text-slate-500 text-sm md:text-base"
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault();
@@ -142,8 +142,8 @@ export function DocumentsPage() {
       ) : documents.length === 0 ? (
         <p className="text-slate-500">No documents yet. Upload internal documentation to get started.</p>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
-          <table className="w-full text-sm">
+        <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+          <table className="w-full min-w-[36rem] text-sm">
             <thead className="bg-slate-50 text-left text-slate-600">
               <tr>
                 <th className="px-4 py-3 font-medium">Title</th>

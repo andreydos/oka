@@ -111,21 +111,21 @@ export function ChatPage() {
   };
 
   return (
-    <div className="flex gap-6 h-[calc(100vh-8rem)]">
-      <aside className="w-64 shrink-0 flex flex-col gap-2">
+    <div className="flex flex-col md:flex-row gap-3 md:gap-6 h-[calc(100dvh-6.5rem)] md:h-[calc(100vh-8rem)] min-h-0">
+      <aside className="w-full md:w-64 shrink-0 flex flex-col gap-2 border-b border-slate-200 pb-3 md:border-b-0 md:pb-0">
         <button
           type="button"
           onClick={startNewChat}
-          className="rounded-lg bg-slate-800 px-4 py-2 text-sm text-white hover:bg-slate-700"
+          className="rounded-lg bg-slate-800 px-4 py-2 text-sm text-white hover:bg-slate-700 shrink-0"
         >
           New chat
         </button>
-        <div className="flex-1 overflow-y-auto space-y-1">
+        <div className="flex md:flex-col gap-2 md:gap-1 md:flex-1 md:min-h-0 overflow-x-auto md:overflow-x-visible md:overflow-y-auto pb-1 md:pb-0">
           {sessions.map((s) => (
             <Link
               key={s.id}
               to={`/chat/${s.id}`}
-              className={`block rounded-lg px-3 py-2 text-sm truncate ${
+              className={`block shrink-0 md:shrink rounded-lg px-3 py-2 text-sm truncate max-w-[14rem] md:max-w-none ${
                 sessionId === s.id
                   ? "bg-slate-200 font-medium"
                   : "text-slate-600 hover:bg-slate-100"
@@ -137,20 +137,20 @@ export function ChatPage() {
         </div>
       </aside>
 
-      <div className="flex-1 flex flex-col rounded-xl border border-slate-200 bg-white">
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 flex flex-col min-h-0 rounded-xl border border-slate-200 bg-white">
+        <div className="flex-1 min-h-0 overflow-y-auto p-3 md:p-6 space-y-4 md:space-y-6">
           {!sessionId && messages.length === 0 && (
-            <p className="text-slate-500 text-center mt-12">
+            <p className="text-slate-500 text-center mt-6 md:mt-12 text-sm md:text-base px-2">
               Ask a question about your indexed documents. Answers include citations.
             </p>
           )}
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className={`max-w-3xl ${msg.role === "user" ? "ml-auto text-right" : ""}`}
+              className={`w-full max-w-3xl ${msg.role === "user" ? "ml-auto text-right" : ""}`}
             >
               <div
-                className={`inline-block rounded-2xl px-4 py-3 text-sm ${
+                className={`inline-block max-w-[92%] md:max-w-none rounded-2xl px-3 py-2.5 md:px-4 md:py-3 text-sm text-left ${
                   msg.role === "user"
                     ? "bg-slate-800 text-white"
                     : "bg-slate-100 text-slate-800"
@@ -168,22 +168,22 @@ export function ChatPage() {
         </div>
 
         {error && (
-          <div className="mx-6 mb-2 rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</div>
+          <div className="mx-3 md:mx-6 mb-2 rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</div>
         )}
 
-        <form onSubmit={send} className="border-t border-slate-200 p-4 flex gap-2">
+        <form onSubmit={send} className="border-t border-slate-200 p-3 md:p-4 flex gap-2 shrink-0">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask a question…"
-            className="flex-1 rounded-lg border border-slate-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+            className="flex-1 min-w-0 rounded-lg border border-slate-300 px-3 md:px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
             disabled={loading}
           />
           <button
             type="submit"
             disabled={loading || !input.trim()}
-            className="rounded-lg bg-slate-800 px-4 py-2 text-sm text-white hover:bg-slate-700 disabled:opacity-50"
+            className="rounded-lg bg-slate-800 px-3 md:px-4 py-2 text-sm text-white hover:bg-slate-700 disabled:opacity-50 shrink-0"
           >
             Send
           </button>
